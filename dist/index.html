@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue.js Switchable Grid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form id="main" v-cloak>
+
+  <div class="bar">
+
+    <!-- These two buttons switch the layout variable,
+       which causes the correct UL to be shown. -->
+
+    <a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+    <a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
+  </div>
+
+  <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
+
+  <ul v-if="layout == 'grid'" class="grid">
+    <!-- A view with big photos and no text -->
+    <li v-for="r in results">
+      <a v-bind:href="r" target="_blank"><img v-bind:src="r" /></a>
+    </li>
+  </ul>
+
+  <ul v-if="layout == 'list'" class="list">
+    <!-- A compact view smaller photos and titles -->
+    <li v-for="r in results">
+      <a v-bind:href="r" target="_blank"><img v-bind:src="r" /></a>
+      <p>{{ r }}</p>
+    </li>
+  </ul>
+
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
