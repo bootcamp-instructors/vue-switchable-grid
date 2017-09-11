@@ -5,9 +5,7 @@ var demo = new Vue({
         // The layout mode, possible values are "grid" or "list".
         layout: 'grid',
 
-        results: [],
-
-        articles: []
+        results: []
 
     },
     mounted: function() {
